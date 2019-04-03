@@ -61,8 +61,7 @@ export PROXY_IP=$(glooctl proxy address --name clusteringress-proxy --port http 
 kubectl patch configmap config-domain \
   --namespace knative-serving \
   --type='json' \
-  --dry-run -o yaml \
-  --patch='[{"op": "replace", "path": "/data", "value":{"${PROXY_IP}.nip.io":""}}]'
+  --patch='[{"op": "replace", "path": "/data", "value":{'${PROXY_IP}.nip.io': ""}}]'
 ```
 
 ## Deploy existing example image
@@ -287,7 +286,7 @@ export KNATIVE_DNS=$(kubectl get kservice helloworld-go --namespace default --ou
 kubectl patch clusteringress ${INGRESS_NAME} \
   --namespace knative-serving \
   --type='json' \
-  --patch='[ { "op": "add", "path": "/spec/tls", "value": [{"hosts":['${KNATIVE_DNS}'], "secretName":"my-tls-secret", "secretNamespace":"default"}] } ]'
+  --patch='[ { "op": "add", "path": "/spec/tls", "value": [{"hosts": ['${KNATIVE_DNS}'], "secretName": "my-tls-secret", "secretNamespace": "default"}] } ]'
 ```
 
 TLS spec looks to get rejected as it disappears after edit. May be hitting a Knative issue
