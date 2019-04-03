@@ -15,18 +15,18 @@ spec:
           serviceAccountName: build-bot
           source:
             git:
-              url: https://github.com/scranton/helloworld-knative-gke
+              url: https://github.com/{ GitHub username }/helloworld-knative-gke
               revision: master
           template:
             name: kaniko
             arguments:
               - name: IMAGE
-                value: docker.io/scottcranton/helloworld-go
+                value: docker.io/{ Docker Hub username }/helloworld-go
           timeout: 10m
       revisionTemplate:
         spec:
           container:
-            image: docker.io/scottcranton/helloworld-go
+            image: docker.io/{ Docker Hub username }/helloworld-go
             imagePullPolicy: Always
             env:
               - name: TARGET
