@@ -6,7 +6,7 @@ spec:
   serviceAccountName: build-bot
   source:
     git:
-      url: https://github.com/{ GitHub username }/helloworld-knative
+      url: https://github.com/{ GitHub username }/helloworld-knative-gke
       revision: master
   template:
     name: kaniko
