@@ -263,6 +263,10 @@ curl $(kubectl get kservice helloworld-go --namespace default --output=jsonpath=
 
 ### TLS
 
+Note: Not working yet. A Knative user is not supposed to edit the ClusterIngress object directly, and seems Knative
+has not yet implemented an API to set the TLS config. Gloo is watching the ClusterIngress for the TLS spec, and would
+expose the Knative service via https if the TLS spec is present.
+
 We can also update Knative and Gloo to serve using TLS.
 
 Let's first create a self-signed certificate for our wildcard DNS, and create a Kubernetes tls secret that we'll need.
